@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ID Card Extractor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>ID Card Extractor</h1>
+            <p>Upload an ID card image or PDF to extract data.</p>
+        </header>
+
+        <main>
+            <div class="upload-section">
+                <div class="controls">
+                    <div class="control-group">
+                        <label for="country">Country</label>
+                        <select id="country">
+                            <option value="UAE">United Arab Emirates</option>
+                            <option value="Pakistan">Pakistan</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <label for="side">Side (Optional)</label>
+                        <select id="side">
+                            <option value="">Auto-Detect</option>
+                            <option value="Front">Front</option>
+                            <option value="Back">Back</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="drop-zone" id="dropZone">
+                    <span class="drop-zone__prompt">Drag & Drop file here or Click to Upload</span>
+                    <input type="file" name="file" class="drop-zone__input" id="fileInput" accept="image/*,application/pdf">
+                </div>
+                
+                <div id="previewContainer" class="hidden">
+                    <img id="imagePreview" src="" alt="Preview">
+                    <p id="fileName"></p>
+                </div>
+
+                <button id="extractBtn" disabled>Extract Data</button>
+            </div>
+
+            <div class="result-section hidden" id="resultSection">
+                <h2>Extraction Results</h2>
+                <div class="json-container">
+                    <pre id="jsonOutput"></pre>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
