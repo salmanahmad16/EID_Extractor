@@ -20,6 +20,7 @@ class BaseParser:
             '%d.%m.%Y', '%d/%m/%Y', '%d-%m-%Y',
             '%Y.%m.%d', '%Y/%m/%d', '%Y-%m-%d',
             '%d%m%Y',
+            '%m/%d/%Y', # US Format
         ]
         
         for fmt in formats:

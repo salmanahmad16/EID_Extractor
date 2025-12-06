@@ -2,6 +2,12 @@ from .utils import load_image, preprocess_image
 from .ocr_engine import OCREngine
 from .parsers.uae import UAEParser
 from .parsers.pakistan import PakistanParser
+from .parsers.generic import GenericParser
+from .parsers.india import IndiaParser
+from .parsers.usa import USAParser
+from .parsers.uk import UKParser
+from .parsers.germany import GermanyParser
+from .parsers.saudi import SaudiParser
 import json
 
 class UniversalIDExtractor:
@@ -9,7 +15,14 @@ class UniversalIDExtractor:
         self.ocr_engine = OCREngine()
         self.parsers = {
             'UAE': UAEParser(),
-            'Pakistan': PakistanParser()
+            'Pakistan': PakistanParser(),
+            'India': IndiaParser(),
+            'USA': USAParser(),
+            'UK': UKParser(),
+            'United Kingdom': UKParser(),
+            'Germany': GermanyParser(),
+            'Saudi Arabia': SaudiParser(),
+            'KSA': SaudiParser()
         }
 
     def extract(self, image_source, country='UAE', side_hint=None):
@@ -24,7 +37,7 @@ class UniversalIDExtractor:
 
         parser = self.parsers.get(country)
         if not parser:
-            return {'error': f"Parser for {country} not implemented"}
+            parser = GenericParser()
 
         for img in images:
             # Preprocess
